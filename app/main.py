@@ -7,7 +7,7 @@ def main():
     print("Logs from your program will appear here!")
 
     server = socket.create_server(("localhost", 9092), reuse_port=True)
-    client, _ = server.accept()
+    client,_ = server.accept()
 
     message_size = (1).to_bytes(4, "big", signed=True)
     correlation_id = (7).to_bytes(4, "big")
