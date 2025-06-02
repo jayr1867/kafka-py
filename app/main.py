@@ -6,10 +6,13 @@ def main():
     # they'll be visible when running tests.
     print("Logs from your program will appear here!")
 
-    # Uncomment this to pass the first stage
-    #
     server = socket.create_server(("localhost", 9092), reuse_port=True)
-    server.accept() # wait for client
+    client, _ = server.accept()
+
+    message_size = (1).to_bytes(4, "big", signed=True)
+    correlation_id = (7).to_bytes(4, "big")
+
+    client.sendall(message_size + correlation_id)
 
 
 if __name__ == "__main__":
